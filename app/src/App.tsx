@@ -1,3 +1,5 @@
+import { LoginPage } from './modules/login';
+
 export function App() {
-  return <main className="app-root" />;
+  return <LoginPage />;
 }
