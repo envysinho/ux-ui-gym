@@ -1,0 +1,7 @@
+packages:
+  - app
+cacheDir: /home/envy/uxuigym/.pnpm-cache
+stateDir: /home/envy/uxuigym/.pnpm-state
+storeDir: /home/envy/uxuigym/.pnpm-store
+overrides:
+  uuid: 11.1.1
