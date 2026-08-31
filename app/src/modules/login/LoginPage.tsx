@@ -1,3 +1,5 @@
+import { ArrowRight } from 'lucide-react';
+
 export function LoginPage() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-black">
@@ -12,7 +14,7 @@ export function LoginPage() {
                 gym
               </span>
             </div>
-            <p className="-mt-3 font-[Inter] text-[52px] font-extrabold leading-[1.12] text-zinc-600">
+            <p className="-mt-3 font-[Inter] text-[52px] font-extrabold leading-[1.12] text-zinc-600 transition-colors duration-200 ease-out hover:text-zinc-500">
               Clientes, membresías
               <br />e inventario.
             </p>
@@ -32,6 +34,13 @@ export function LoginPage() {
               placeholder="contraseña"
               type="password"
             />
+            <button
+              aria-label="Ingresar"
+              className="mt-5 flex size-[100px] items-center justify-center rounded-full bg-white text-zinc-900 shadow-[0_0_0_1px_rgba(0,0,0,0.12)] transition-transform hover:scale-105 focus:ring-2 focus:ring-white/35 focus:outline-none"
+              type="submit"
+            >
+              <ArrowRight aria-hidden="true" size={52} strokeWidth={3} />
+            </button>
           </form>
         </div>
       </div>
