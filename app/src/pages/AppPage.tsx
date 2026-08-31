@@ -29,7 +29,6 @@ function renderActiveModule(activePage: string) {
 export function AppPage({ onLogout }: AppPageProps) {
   const [activePage, setActivePage] = useState(sidebarItems[0].label);
   const [isLightTheme, setIsLightTheme] = useState(false);
-  const [isModuleScrolling, setIsModuleScrolling] = useState(false);
   const activePageIndex = sidebarItems.findIndex(
     ({ label }) => label === activePage,
   );
@@ -61,8 +60,6 @@ export function AppPage({ onLogout }: AppPageProps) {
           <motion.div
             animate={{ y: `${activePageIndex * -100}%` }}
             className="absolute inset-0 flex flex-col"
-            onAnimationComplete={() => setIsModuleScrolling(false)}
-            onAnimationStart={() => setIsModuleScrolling(true)}
             transition={moduleScrollTransition}
           >
             {sidebarItems.map(({ label }) => (
@@ -75,18 +72,6 @@ export function AppPage({ onLogout }: AppPageProps) {
               </div>
             ))}
           </motion.div>
-          <motion.div
-            aria-hidden="true"
-            animate={{ opacity: isModuleScrolling ? 1 : 0 }}
-            className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[72px] bg-gradient-to-b from-[var(--app-bg)] to-transparent"
-            transition={{ duration: 0.16 }}
-          />
-          <motion.div
-            aria-hidden="true"
-            animate={{ opacity: isModuleScrolling ? 1 : 0 }}
-            className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[72px] bg-gradient-to-t from-[var(--app-bg)] to-transparent"
-            transition={{ duration: 0.16 }}
-          />
         </div>
       </section>
     </main>
