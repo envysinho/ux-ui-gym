@@ -14,8 +14,13 @@ export function App() {
     setIsLoggedIn(true);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem(MOCK_SESSION_KEY);
+    setIsLoggedIn(false);
+  };
+
   if (isLoggedIn) {
-    return <AppPage />;
+    return <AppPage onLogout={handleLogout} />;
   }
 
   return <LoginPage onLogin={handleLogin} />;

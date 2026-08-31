@@ -31,21 +31,21 @@ export function AppHeader({
       >
         <input
           aria-label="Buscar"
-          className="relative z-10 h-full w-full rounded-[50px] bg-transparent pr-[56px] pl-[22px] text-[14px] leading-none font-bold text-transparent caret-[var(--text-primary)] outline-none"
+          className="relative z-10 h-full w-full rounded-[50px] bg-transparent pr-[56px] pl-[22px] text-[14px] leading-[1.2] font-bold text-transparent caret-[var(--text-primary)] outline-none"
           onChange={(event) => setSearchQuery(event.target.value)}
           type="text"
           value={searchQuery}
         />
         <div
           aria-hidden="true"
-          className="non-selectable pointer-events-none absolute inset-0 flex items-center pr-[56px] pl-[22px] text-[14px] leading-none font-bold"
+          className="non-selectable pointer-events-none absolute inset-0 flex items-center pr-[56px] pl-[22px] text-[14px] leading-[1.2] font-bold"
         >
           {searchQuery.length === 0 ? (
             <span className="min-w-0 truncate text-[var(--text-muted)]">
               Busca cliente, membresia, productos...
             </span>
           ) : (
-            <span className="flex min-w-0 max-w-full overflow-hidden text-[var(--text-primary)]">
+            <span className="flex min-w-0 max-w-full overflow-hidden py-1 text-[var(--text-primary)]">
               <AnimatePresence initial={false} mode="popLayout">
                 {Array.from(searchQuery).map((character, index) => (
                   <motion.span

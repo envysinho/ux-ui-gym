@@ -4,3 +4,4 @@
 - No usar `npm` ni `yarn` para instalar, actualizar o ejecutar scripts.
 - Mantener la app web dentro de `app/`.
 - Priorizar Vite + React + TypeScript para la interfaz web.
+- Seguir la guia de estructura frontend en `docs/estructura-frontend.md`.

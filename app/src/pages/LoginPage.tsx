@@ -87,7 +87,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
                 className="login-field-display non-selectable"
               >
                 {password.length === 0 ? (
-                  <span className="text-[#5c5c5c]">contrasena</span>
+                  <span className="text-[#5c5c5c]">contraseña</span>
                 ) : (
                   <span className="flex max-w-full overflow-hidden py-2 text-white">
                     {Array.from(password).map((_, index) => (

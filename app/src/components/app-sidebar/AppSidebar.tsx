@@ -29,10 +29,15 @@ export const sidebarItems = [
 
 type AppSidebarProps = {
   activePage: string;
+  onLogout: () => void;
   onPageChange: (page: string) => void;
 };
 
-export function AppSidebar({ activePage, onPageChange }: AppSidebarProps) {
+export function AppSidebar({
+  activePage,
+  onLogout,
+  onPageChange,
+}: AppSidebarProps) {
   return (
     <aside className="flex h-full w-[255px] flex-col justify-between rounded-[25px] bg-[var(--surface)] transition-colors duration-200">
       <div className="flex flex-col items-center">
@@ -50,7 +55,7 @@ export function AppSidebar({ activePage, onPageChange }: AppSidebarProps) {
           ))}
         </div>
       </div>
-      <UserLogoutArea />
+      <UserLogoutArea onLogout={onLogout} />
     </aside>
   );
 }
