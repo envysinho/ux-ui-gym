@@ -33,15 +33,17 @@ type AppSidebarProps = {
 
 export function AppSidebar({ activePage, onPageChange }: AppSidebarProps) {
   return (
-    <aside className="flex h-full w-[255px] flex-col justify-between rounded-[25px] bg-[#181818]">
+    <aside className="flex h-full w-[255px] flex-col justify-between rounded-[25px] bg-[var(--surface)] transition-colors duration-200">
       <div className="flex flex-col items-center">
         <LogoLockup className="mt-[18px]" />
         <div className="mt-3 flex w-full flex-col items-center gap-[5px]">
           {sidebarItems.map(({ icon: Icon, label }) => (
             <button
               aria-current={activePage === label ? 'page' : undefined}
-              className={`flex h-8 w-[calc(100%-20px)] items-center gap-[8px] rounded-[10px] border-0 px-[10px] text-[14px] leading-none font-semibold text-white ${
-                activePage === label ? 'bg-[#2a2a2a]' : 'bg-[#0d0d0d]'
+              className={`flex h-8 w-[calc(100%-20px)] items-center gap-[8px] rounded-[10px] border-0 px-[10px] text-[14px] leading-none font-semibold text-[var(--text-primary)] transition-colors duration-200 ${
+                activePage === label
+                  ? 'bg-[var(--surface-active)]'
+                  : 'bg-[var(--surface-strong)]'
               }`}
               key={label}
               onClick={() => onPageChange(label)}
