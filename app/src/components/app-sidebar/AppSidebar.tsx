@@ -10,14 +10,15 @@ import {
   Users,
   Wallet,
 } from 'lucide-react';
-import { LogoLockup } from './LogoLockup';
-import { UserLogoutArea } from './UserLogoutArea';
+import { LogoLockup } from './components/LogoLockup';
+import { SidebarButton } from './components/SidebarButton';
+import { UserLogoutArea } from './components/UserLogoutArea';
 
 export const sidebarItems = [
   { icon: LayoutDashboard, label: 'Dashboard' },
   { icon: Users, label: 'Clientes' },
-  { icon: CreditCard, label: 'Membresías' },
-  { icon: Camera, label: 'Validación' },
+  { icon: CreditCard, label: 'Membresias' },
+  { icon: Camera, label: 'Validacion' },
   { icon: QrCode, label: 'Acceso QR' },
   { icon: Package, label: 'Productos' },
   { icon: Boxes, label: 'Inventario' },
@@ -37,21 +38,15 @@ export function AppSidebar({ activePage, onPageChange }: AppSidebarProps) {
       <div className="flex flex-col items-center">
         <LogoLockup className="mt-[18px]" />
         <div className="mt-3 flex w-full flex-col items-center gap-[5px]">
-          {sidebarItems.map(({ icon: Icon, label }) => (
-            <button
-              aria-current={activePage === label ? 'page' : undefined}
-              className={`flex h-8 w-[calc(100%-20px)] items-center gap-[8px] rounded-[10px] border-0 px-[10px] text-[14px] leading-none font-semibold text-[var(--text-primary)] transition-colors duration-200 ${
-                activePage === label
-                  ? 'bg-[var(--surface-active)]'
-                  : 'bg-[var(--surface-strong)]'
-              }`}
+          {sidebarItems.map(({ icon, label }) => (
+            <SidebarButton
+              active={activePage === label}
+              icon={icon}
               key={label}
               onClick={() => onPageChange(label)}
-              type="button"
             >
-              <Icon aria-hidden="true" size={16} strokeWidth={2} />
-              <span>{label}</span>
-            </button>
+              {label}
+            </SidebarButton>
           ))}
         </div>
       </div>

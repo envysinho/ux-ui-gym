@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { AppHeader } from '../components/AppHeader';
-import { AppSidebar, sidebarItems } from '../components/AppSidebar';
+import { AppHeader } from '../components/app-header/AppHeader';
+import { AppSidebar, sidebarItems } from '../components/app-sidebar/AppSidebar';
 import { Dashboard } from '../modules/dashboard/Dashboard';
 
 export function AppPage() {
