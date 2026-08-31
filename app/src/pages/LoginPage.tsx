@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
-import './login.css';
+import '../styles/login.css';
 
 type LoginPageProps = {
   onLogin?: () => void;
