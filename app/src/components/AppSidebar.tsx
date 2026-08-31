@@ -16,8 +16,8 @@ import { UserLogoutArea } from './UserLogoutArea';
 export const sidebarItems = [
   { icon: LayoutDashboard, label: 'Dashboard' },
   { icon: Users, label: 'Clientes' },
-  { icon: CreditCard, label: 'Membresias' },
-  { icon: Camera, label: 'Validacion' },
+  { icon: CreditCard, label: 'Membresías' },
+  { icon: Camera, label: 'Validación' },
   { icon: QrCode, label: 'Acceso QR' },
   { icon: Package, label: 'Productos' },
   { icon: Boxes, label: 'Inventario' },
