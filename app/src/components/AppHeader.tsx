@@ -89,8 +89,18 @@ export function AppHeader({
             <Moon aria-hidden="true" size={15} strokeWidth={2.5} />
           )}
         </motion.span>
-        <Moon aria-hidden="true" size={15} strokeWidth={2.25} />
-        <Sun aria-hidden="true" size={15} strokeWidth={2.25} />
+        <Moon
+          aria-hidden="true"
+          className={isLightTheme ? 'translate-x-[3px]' : ''}
+          size={15}
+          strokeWidth={2.25}
+        />
+        <Sun
+          aria-hidden="true"
+          className={!isLightTheme ? '-translate-x-[3px]' : ''}
+          size={15}
+          strokeWidth={2.25}
+        />
       </motion.button>
     </header>
   );
