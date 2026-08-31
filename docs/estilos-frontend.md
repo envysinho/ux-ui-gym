@@ -15,9 +15,12 @@ estados directos dentro del JSX.
 
 Usamos CSS normal cuando el estilo necesita una regla propia, se reutiliza entre
 varios lugares, o requiere comportamiento responsivo mas claro que en Tailwind.
+Los componentes reutilizables tambien pueden tener CSS normal cuando su estilo
+forma parte de su identidad visual.
 
 - Media queries y ajustes por breakpoint.
-- Componentes reutilizables compartidos entre paginas.
+- Componentes reutilizables compartidos entre paginas, como `LogoLockup`.
+- Componentes reutilizables cuyo estilo debe conservarse igual donde se usen.
 - Piezas con muchas clases o estilos que ensucian demasiado el JSX.
 - Estilos con selectores internos, pseudo-elementos o variantes complejas.
 - Animaciones/keyframes, fuentes, resets y reglas globales.
@@ -26,4 +29,5 @@ varios lugares, o requiere comportamiento responsivo mas claro que en Tailwind.
 ## Criterio practico
 
 Si el estilo es pequeno, local y facil de leer, va con Tailwind. Si se repite,
-crece, tiene media queries o hace que el JSX se vuelva pesado, va a CSS normal.
+pertenece a un componente reutilizable, crece, tiene media queries o hace que el
+JSX se vuelva pesado, va a CSS normal.
