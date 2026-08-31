@@ -1,15 +1,42 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { AppHeader } from '../components/app-header/AppHeader';
 import { AppSidebar, sidebarItems } from '../components/app-sidebar/AppSidebar';
+import { Clients } from '../modules/clients/Clients';
 import { Dashboard } from '../modules/dashboard/Dashboard';
 
 type AppPageProps = {
   onLogout: () => void;
 };
 
+const moduleScrollTransition = {
+  duration: 0.42,
+  ease: [0.22, 1, 0.36, 1],
+} as const;
+
+function renderActiveModule(activePage: string) {
+  if (activePage === 'Dashboard') {
+    return <Dashboard />;
+  }
+
+  if (activePage === 'Clientes') {
+    return <Clients />;
+  }
+
+  return <div className="min-h-0 flex-1" />;
+}
+
 export function AppPage({ onLogout }: AppPageProps) {
   const [activePage, setActivePage] = useState(sidebarItems[0].label);
   const [isLightTheme, setIsLightTheme] = useState(false);
+  const [isModuleScrolling, setIsModuleScrolling] = useState(false);
+  const activePageIndex = sidebarItems.findIndex(
+    ({ label }) => label === activePage,
+  );
+
+  const handlePageChange = (nextPage: string) => {
+    setActivePage(nextPage);
+  };
 
   return (
     <main
@@ -19,7 +46,7 @@ export function AppPage({ onLogout }: AppPageProps) {
         <AppSidebar
           activePage={activePage}
           onLogout={onLogout}
-          onPageChange={setActivePage}
+          onPageChange={handlePageChange}
         />
       </div>
       <section className="m-[32px_32px_32px_10px] flex min-w-0 flex-1 flex-col">
@@ -30,11 +57,37 @@ export function AppPage({ onLogout }: AppPageProps) {
             onThemeToggle={() => setIsLightTheme((currentTheme) => !currentTheme)}
           />
         </div>
-        {activePage === 'Dashboard' ? (
-          <Dashboard />
-        ) : (
-          <div className="min-h-0 flex-1" />
-        )}
+        <div className="relative min-h-0 flex-1 overflow-hidden">
+          <motion.div
+            animate={{ y: `${activePageIndex * -100}%` }}
+            className="absolute inset-0 flex flex-col"
+            onAnimationComplete={() => setIsModuleScrolling(false)}
+            onAnimationStart={() => setIsModuleScrolling(true)}
+            transition={moduleScrollTransition}
+          >
+            {sidebarItems.map(({ label }) => (
+              <div
+                aria-hidden={activePage !== label}
+                className="flex h-full min-h-0 flex-none flex-col"
+                key={label}
+              >
+                {renderActiveModule(label)}
+              </div>
+            ))}
+          </motion.div>
+          <motion.div
+            aria-hidden="true"
+            animate={{ opacity: isModuleScrolling ? 1 : 0 }}
+            className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[72px] bg-gradient-to-b from-[var(--app-bg)] to-transparent"
+            transition={{ duration: 0.16 }}
+          />
+          <motion.div
+            aria-hidden="true"
+            animate={{ opacity: isModuleScrolling ? 1 : 0 }}
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[72px] bg-gradient-to-t from-[var(--app-bg)] to-transparent"
+            transition={{ duration: 0.16 }}
+          />
+        </div>
       </section>
     </main>
   );
