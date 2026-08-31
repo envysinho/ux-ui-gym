@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DashboardPage } from './pages/DashboardPage';
+import { AppPage } from './pages/AppPage';
 import { LoginPage } from './pages/LoginPage';
 
 const MOCK_SESSION_KEY = 'mclub_mock_session';
@@ -15,7 +15,7 @@ export function App() {
   };
 
   if (isLoggedIn) {
-    return <DashboardPage />;
+    return <AppPage />;
   }
 
   return <LoginPage onLogin={handleLogin} />;

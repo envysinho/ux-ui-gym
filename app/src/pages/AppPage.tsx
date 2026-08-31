@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { AppHeader } from '../components/AppHeader';
 import { AppSidebar, sidebarItems } from '../components/AppSidebar';
+import { Dashboard } from '../modules/dashboard/Dashboard';
 
-export function DashboardPage() {
+export function AppPage() {
   const [activePage, setActivePage] = useState(sidebarItems[0].label);
   const [isLightTheme, setIsLightTheme] = useState(false);
 
@@ -19,7 +20,11 @@ export function DashboardPage() {
           isLightTheme={isLightTheme}
           onThemeToggle={() => setIsLightTheme((currentTheme) => !currentTheme)}
         />
-        <div className="min-h-0 flex-1" />
+        {activePage === 'Dashboard' ? (
+          <Dashboard />
+        ) : (
+          <div className="min-h-0 flex-1" />
+        )}
       </section>
     </main>
   );

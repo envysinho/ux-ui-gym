@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Moon, Search, Sun } from 'lucide-react';
 import { useState } from 'react';
 
@@ -46,19 +46,23 @@ export function AppHeader({
             </span>
           ) : (
             <span className="flex min-w-0 max-w-full overflow-hidden text-[var(--text-primary)]">
-              {Array.from(searchQuery).map((character, index) => (
-                <motion.span
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  initial={{ opacity: 0, scale: 0.92, y: 6 }}
-                  key={`${character}-${index}`}
-                  transition={{
-                    duration: 0.26,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                >
-                  {character === ' ' ? '\u00a0' : character}
-                </motion.span>
-              ))}
+              <AnimatePresence initial={false} mode="popLayout">
+                {Array.from(searchQuery).map((character, index) => (
+                  <motion.span
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.92, y: 4 }}
+                    initial={{ opacity: 0, scale: 0.92, y: 6 }}
+                    key={`${index}-${character}`}
+                    layout
+                    transition={{
+                      duration: 0.2,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  >
+                    {character === ' ' ? '\u00a0' : character}
+                  </motion.span>
+                ))}
+              </AnimatePresence>
             </span>
           )}
         </div>
