@@ -1,5 +1,13 @@
-import { LoginPage } from './modules/login';
+import { useState } from 'react';
+import { DashboardPage } from './pages/DashboardPage';
+import { LoginPage } from './pages/LoginPage';
 
 export function App() {
-  return <LoginPage />;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  if (isLoggedIn) {
+    return <DashboardPage />;
+  }
+
+  return <LoginPage onLogin={() => setIsLoggedIn(true)} />;
 }

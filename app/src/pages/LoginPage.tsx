@@ -1,9 +1,13 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
-import './styles.css';
+import './login.css';
 
-export function LoginPage() {
+type LoginPageProps = {
+  onLogin?: () => void;
+};
+
+export function LoginPage({ onLogin }: LoginPageProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -22,11 +26,17 @@ export function LoginPage() {
               <span className="login-logo-tag">gym</span>
             </div>
             <p className="login-tagline">
-              Clientes, membresías
+              Clientes, membresias
               <br />e inventario.
             </p>
           </div>
-          <form className="login-form">
+          <form
+            className="login-form"
+            onSubmit={(event) => {
+              event.preventDefault();
+              onLogin?.();
+            }}
+          >
             <div className="login-field focus-within:ring-2 focus-within:ring-white/20">
               <input
                 aria-label="Usuario"
@@ -64,7 +74,7 @@ export function LoginPage() {
             </div>
             <div className="login-field focus-within:ring-2 focus-within:ring-white/20">
               <input
-                aria-label="Contraseña"
+                aria-label="Contrasena"
                 autoComplete="current-password"
                 className="login-input"
                 name="password"
@@ -77,7 +87,7 @@ export function LoginPage() {
                 className="login-field-display non-selectable"
               >
                 {password.length === 0 ? (
-                  <span className="text-[#5c5c5c]">contraseña</span>
+                  <span className="text-[#5c5c5c]">contrasena</span>
                 ) : (
                   <span className="flex max-w-full overflow-hidden py-2 text-white">
                     {Array.from(password).map((_, index) => (
