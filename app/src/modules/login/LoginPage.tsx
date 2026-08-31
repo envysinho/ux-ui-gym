@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 export function LoginPage() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-black">
-      <div className="relative aspect-square w-[min(700px,calc(100vw-32px))] rounded-[70px] bg-zinc-900">
+      <div className="relative aspect-square w-[min(700px,calc(100vw-32px))] rounded-[70px] bg-[#181818]">
         <div className="absolute inset-x-0 top-12">
           <div className="ml-17">
             <div className="relative inline-block">
@@ -14,7 +14,7 @@ export function LoginPage() {
                 gym
               </span>
             </div>
-            <p className="-mt-3 font-[Inter] text-[52px] font-extrabold leading-[1.12] text-zinc-600 transition-colors duration-200 ease-out hover:text-zinc-500">
+            <p className="-mt-3 font-[Inter] text-[52px] font-bold leading-[1.12] text-white/18 transition-colors duration-200 ease-out hover:text-white/30">
               Clientes, membresías
               <br />e inventario.
             </p>
@@ -22,21 +22,21 @@ export function LoginPage() {
           <form className="mx-auto mt-7 flex w-[580px] flex-col items-center gap-4">
             <input
               aria-label="Usuario"
-              className="h-[86px] w-full rounded-full bg-black/65 px-8 text-center font-[Inter] text-[48px] font-bold leading-none text-white outline-none placeholder:text-[48px] placeholder:font-bold placeholder:text-zinc-600 focus:ring-2 focus:ring-white/20"
+              className="h-[86px] w-full rounded-full bg-[#0d0d0d] px-8 text-center font-[Inter] text-[48px] font-bold leading-none text-white outline-none placeholder:text-[48px] placeholder:font-bold placeholder:text-[#5c5c5c] focus:ring-2 focus:ring-white/20"
               name="username"
               placeholder="usuario"
               type="text"
             />
             <input
               aria-label="Contraseña"
-              className="h-[86px] w-full rounded-full bg-black/65 px-8 text-center font-[Inter] text-[48px] font-bold leading-none text-white outline-none placeholder:text-[48px] placeholder:font-bold placeholder:text-zinc-600 focus:ring-2 focus:ring-white/20"
+              className="h-[86px] w-full rounded-full bg-[#0d0d0d] px-8 text-center font-[Inter] text-[48px] font-bold leading-none text-white outline-none placeholder:text-[48px] placeholder:font-bold placeholder:text-[#5c5c5c] focus:ring-2 focus:ring-white/20"
               name="password"
               placeholder="contraseña"
               type="password"
             />
             <button
               aria-label="Ingresar"
-              className="mt-5 flex size-[100px] items-center justify-center rounded-full bg-white text-zinc-900 shadow-[0_0_0_1px_rgba(0,0,0,0.12)] transition-transform hover:scale-105 focus:ring-2 focus:ring-white/35 focus:outline-none"
+              className="mt-5 flex size-[100px] items-center justify-center rounded-full bg-white text-[#181818] shadow-[0_0_0_1px_rgba(0,0,0,0.12)] transition-transform hover:scale-105 focus:ring-2 focus:ring-white/35 focus:outline-none"
               type="submit"
             >
               <ArrowRight aria-hidden="true" size={52} strokeWidth={3} />
