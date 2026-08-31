@@ -168,6 +168,12 @@
   box-sizing: border-box;
 }
 
+.non-selectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 html,
 body,
 #root {
