@@ -1,18 +1,32 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { AppHeader } from '../components/app-header/AppHeader';
 import { AppSidebar, sidebarItems } from '../components/app-sidebar/AppSidebar';
 import { Clients } from '../modules/clients/Clients';
 import { Dashboard } from '../modules/dashboard/Dashboard';
+import { Inventory } from '../modules/inventory/Inventory';
 import { Memberships } from '../modules/memberships/Memberships';
+import { Products } from '../modules/products/Products';
 
 type AppPageProps = {
   onLogout: () => void;
 };
 
 const moduleScrollTransition = {
-  duration: 0.42,
-  ease: [0.22, 1, 0.36, 1],
+  duration: 0.68,
+  ease: [0.16, 1, 0.3, 1],
+} as const;
+
+const moduleMotionVariants = {
+  enter: (direction: number) => ({
+    x: direction >= 0 ? '100%' : '-100%',
+  }),
+  center: {
+    x: '0%',
+  },
+  exit: (direction: number) => ({
+    x: direction >= 0 ? '-100%' : '100%',
+  }),
 } as const;
 
 function renderActiveModule(activePage: string) {
@@ -28,17 +42,30 @@ function renderActiveModule(activePage: string) {
     return <Memberships />;
   }
 
+  if (activePage === 'Productos') {
+    return <Products />;
+  }
+
+  if (activePage === 'Inventario') {
+    return <Inventory />;
+  }
+
   return <div className="min-h-0 flex-1" />;
 }
 
 export function AppPage({ onLogout }: AppPageProps) {
   const [activePage, setActivePage] = useState(sidebarItems[0].label);
+  const [scrollDirection, setScrollDirection] = useState(1);
   const [isLightTheme, setIsLightTheme] = useState(false);
-  const activePageIndex = sidebarItems.findIndex(
-    ({ label }) => label === activePage,
-  );
 
   const handlePageChange = (nextPage: string) => {
+    if (nextPage === activePage) {
+      return;
+    }
+
+    const currentIndex = sidebarItems.findIndex(({ label }) => label === activePage);
+    const nextIndex = sidebarItems.findIndex(({ label }) => label === nextPage);
+    setScrollDirection(nextIndex > currentIndex ? 1 : -1);
     setActivePage(nextPage);
   };
 
@@ -62,21 +89,20 @@ export function AppPage({ onLogout }: AppPageProps) {
           />
         </div>
         <div className="relative min-h-0 flex-1 overflow-hidden">
-          <motion.div
-            animate={{ y: `${activePageIndex * -100}%` }}
-            className="absolute inset-0 flex flex-col"
-            transition={moduleScrollTransition}
-          >
-            {sidebarItems.map(({ label }) => (
-              <div
-                aria-hidden={activePage !== label}
-                className="flex h-full min-h-0 flex-none flex-col"
-                key={label}
-              >
-                {renderActiveModule(label)}
-              </div>
-            ))}
-          </motion.div>
+          <AnimatePresence custom={scrollDirection} initial={false} mode="popLayout">
+            <motion.div
+              animate="center"
+              className="absolute inset-0 flex flex-col"
+              custom={scrollDirection}
+              exit="exit"
+              initial="enter"
+              key={activePage}
+              transition={moduleScrollTransition}
+              variants={moduleMotionVariants}
+            >
+              {renderActiveModule(activePage)}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
     </main>
