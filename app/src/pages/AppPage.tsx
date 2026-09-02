@@ -4,6 +4,7 @@ import { AppHeader } from '../components/app-header/AppHeader';
 import { AppSidebar, sidebarItems } from '../components/app-sidebar/AppSidebar';
 import { Clients } from '../modules/clients/Clients';
 import { Dashboard } from '../modules/dashboard/Dashboard';
+import { Memberships } from '../modules/memberships/Memberships';
 
 type AppPageProps = {
   onLogout: () => void;
@@ -21,6 +22,10 @@ function renderActiveModule(activePage: string) {
 
   if (activePage === 'Clientes') {
     return <Clients />;
+  }
+
+  if (activePage === 'Membresias') {
+    return <Memberships />;
   }
 
   return <div className="min-h-0 flex-1" />;
